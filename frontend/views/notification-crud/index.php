@@ -1,13 +1,13 @@
 <?php
 
-use app\models\notifications\Notifications;
+use frontend\models\notifications\Notification;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\models\notifications\NotificationSearch $searchModel */
+/** @var frontend\models\notifications\NotificationSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = 'Notification';
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'sent_at',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Notifications $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Notification $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

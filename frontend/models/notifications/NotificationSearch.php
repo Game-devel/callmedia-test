@@ -14,7 +14,7 @@ class NotificationSearch extends Notification
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['id'], 'integer'],

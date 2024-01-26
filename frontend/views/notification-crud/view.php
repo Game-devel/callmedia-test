@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\notifications\Notifications $model */
+/** @var frontend\models\notifications\Notification $model */
 
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Notification', 'url' => ['index']];

@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var app\models\notifications\Notifications $model */
+/** @var frontend\models\notifications\Notification $model */
 
 $this->title = 'Update Notification: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Notification', 'url' => ['index']];

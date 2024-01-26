@@ -16,10 +16,10 @@ class m240126_011712_create_notifications_table extends Migration
         $this->createTable('{{%notifications}}', [
             'id' => $this->primaryKey(),
             'message' => $this->text()->notNull(),
-            'integrator' => $this->string()->notNull(),
-            'status' => $this->string()->notNull(),
-            'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP'),
-            'sent_at' => $this->timestamp()->null(),
+            'integrator' => $this->smallInteger()->notNull(),
+            'status' => $this->smallInteger()->notNull(),
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'sent_at' => $this->dateTime()->null(),
         ]);
     }
 

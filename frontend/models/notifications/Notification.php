@@ -8,38 +8,56 @@ namespace frontend\models\notifications;
  *
  * @property int $id
  * @property string $message
- * @property string $integrator
- * @property string $status
+ * @property int $integrator
+ * @property int $status
  * @property string $created_at
  * @property string|null $sent_at
  */
 class Notification extends \yii\db\ActiveRecord
 {
+    private const TYPE_SMS = 1;
+    private const TYPE_TELEGRAM = 2;
+
+    public const TYPE_LIST = [
+      self::TYPE_SMS => 'sms',
+      self::TYPE_TELEGRAM => 'telegram'
+    ];
+
+    public const STATUS_PENDING = 1;
+    public const STATUS_SENT = 2;
+    public const STATUS_ERROR = 3;
+
+    public const STATUS_LIST = [
+        self::STATUS_PENDING => 'pending',
+        self::STATUS_SENT => 'sent',
+        self::STATUS_ERROR => 'error'
+    ];
+
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'notifications';
+        return '{{%notifications}}';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['message', 'integrator', 'status'], 'required'],
             [['message'], 'string'],
             [['created_at', 'sent_at'], 'safe'],
-            [['integrator', 'status'], 'string', 'max' => 255],
+            [['integrator', 'status'], 'integer']
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -55,8 +73,18 @@ class Notification extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return NotificationQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): NotificationQuery
     {
         return new NotificationQuery(get_called_class());
+    }
+
+    public static function getTypeList(): array
+    {
+        return self::TYPE_LIST;
+    }
+
+    public static function getStatusList(): array
+    {
+        return self::STATUS_LIST;
     }
 }
