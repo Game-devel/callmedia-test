@@ -10,26 +10,9 @@ namespace frontend\models\notifications;
  */
 class NotificationQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    public function statusBy(int $status): self
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
-
-    /**
-     * {@inheritdoc}
-     * @return Notification[]|array
-     */
-    public function all($db = null)
-    {
-        return parent::all($db);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return Notification|array|null
-     */
-    public function one($db = null)
-    {
-        return parent::one($db);
+        $this->andWhere(['status' => $status]);
+        return $this;
     }
 }

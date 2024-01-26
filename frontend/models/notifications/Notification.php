@@ -15,8 +15,8 @@ namespace frontend\models\notifications;
  */
 class Notification extends \yii\db\ActiveRecord
 {
-    private const TYPE_SMS = 1;
-    private const TYPE_TELEGRAM = 2;
+    public const TYPE_SMS = 1;
+    public const TYPE_TELEGRAM = 2;
 
     public const TYPE_LIST = [
       self::TYPE_SMS => 'sms',
