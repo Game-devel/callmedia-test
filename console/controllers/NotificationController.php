@@ -25,14 +25,19 @@ class NotificationController extends Controller
         if (empty($notification)) {
             return true;
         }
-        $strategy = $this->getTypeService($notification->integrator);
-        if ($strategy->sendNotification($notification->message)) {
-            $notification->updateAttributes(['status' => Notification::STATUS_SENT, 'sent_at' => date('Y-m-d H:i:s')]);
-            return true;
-        } else {
-            $notification->updateAttributes(['status' => Notification::STATUS_ERROR, 'sent_at' => date('Y-m-d H:i:s')]);
-            return false;
+        try {
+            $strategy = $this->getTypeService($notification->integrator);
+            if ($strategy->sendNotification($notification->message)) {
+                $notification->updateAttributes(['status' => Notification::STATUS_SENT, 'sent_at' => date('Y-m-d H:i:s')]);
+                return true;
+            } else {
+                $notification->updateAttributes(['status' => Notification::STATUS_ERROR, 'sent_at' => date('Y-m-d H:i:s')]);
+                return false;
+            }
+        } catch (\Throwable $e) {
+            /* ... */
         }
+        return false;
     }
 
 
