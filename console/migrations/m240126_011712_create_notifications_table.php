@@ -21,6 +21,9 @@ class m240126_011712_create_notifications_table extends Migration
             'created_at' => $this->dateTime()->defaultExpression('NOW()'),
             'sent_at' => $this->dateTime()->null(),
         ]);
+
+        $this->createIndex('IND-notifications-integrator', '{{%notifications}}', ['integrator']);
+        $this->createIndex('IND-notifications-status', '{{%notifications}}', ['status']);
     }
 
     /**
